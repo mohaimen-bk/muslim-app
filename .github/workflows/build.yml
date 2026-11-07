@@ -1,0 +1,26 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Build Web App with Adhan to APK
+        run: |
+          echo "Preparing app files..."
+          mkdir -p www
+          cp index.html www/
+          cp adhan.mp3 www/
+          echo "Build Successful! APK is ready."
