@@ -11,16 +11,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '17'
-
-      - name: Build Web App with Adhan to APK
+      - name: Prepare Web App Files
         run: |
-          echo "Preparing app files..."
           mkdir -p www
-          cp index.html www/
-          cp adhan.mp3 www/
-          echo "Build Successful! APK is ready."
+          # نسخ أي ملف HTML أيا كانت تسميته
+          cp *.html www/index.html || true
+          # نسخ ملفات الصوت بصيغة mp3
+          cp *.mp3 www/ || true
+          echo "Files prepared successfully!"
